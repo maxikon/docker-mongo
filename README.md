@@ -7,6 +7,7 @@ To install on remote host please change:
 
 Password is **qwerty123456** for vault, remote user, mongo root
 
+How to run:
 ```sh
 $ ansible-playbook -i inventory --ask-vault-pass --extra-vars '@passwd.yml' install.yml
 ```
