@@ -1,0 +1,31 @@
+---
+
+- name: 'Configure app server(s)'
+  hosts: 'workers'
+  become: True
+
+  roles:
+    - docker
+
+  tasks:
+  - include_tasks: roles/docker/tasks/docker-users.yml
+
+  - name: Create mongo data dir
+    file:
+      path: ~/mongo-data
+      state: directory
+
+ 
+  - name: Run mongo
+    docker_container:
+      name: test-mongo
+      image: mongo
+      state: started
+      restart_policy: always
+      ports:
+        - "27017:27017"
+      volumes:
+        - mongo-data:/data/db
+      env:
+        MONGO_INITDB_ROOT_USERNAME: root
+        MONGO_INITDB_ROOT_PASSWORD: qwerty123456

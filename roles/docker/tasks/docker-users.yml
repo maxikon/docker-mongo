@@ -1,0 +1,12 @@
+---
+- name: Make sure we have a 'docker' group
+  group:
+    name: docker
+    state: present
+
+- name: Add sudoers users to docker group
+  user:
+    name: maximus
+    groups: docker
+    append: yes
+

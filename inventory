@@ -1,0 +1,10 @@
+[workers]
+192.168.88.31
+
+[workers:vars]
+ansible_ssh_private_key_file=keys/test-task
+ansible_user=maximus
+ansible_become=yes 
+ansible_become_method=sudo 
+ansible_become_pass='{{ sudo_pass }}'
+auth_key=test
